@@ -1,0 +1,49 @@
+
+@model List<Project_MVC_MusicShop.Models.Instrument>
+
+@{
+    ViewData["Title"] = "Enstrümanlar";
+}
+
+<h2 class="mb-4">Enstrümanlar</h2>
+
+<div class="row">
+    @foreach (var instrument in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="@instrument.ImageUrl"
+                     class="card-img-top"
+                     alt="@instrument.Name">
+
+                <div class="card-body">
+                    <h5 class="card-title">@instrument.Name</h5>
+
+                    <p class="card-text">
+                        @instrument.Description
+                    </p>
+
+                    <p class="card-text">
+                        <strong>Marka:</strong> @instrument.Brand
+                    </p>
+
+                    <p class="card-text">
+                        <strong>Kategori:</strong>
+                        @instrument.InstrumentCategory?.Name
+                    </p>
+
+                    <p class="text-success fw-bold">
+                        @instrument.Price.ToString("N2") TL
+                    </p>
+
+                    <a asp-controller="Instrument"
+                       asp-action="Details"
+                       asp-route-id="@instrument.Id"
+                       class="btn btn-primary">
+                        Detay
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

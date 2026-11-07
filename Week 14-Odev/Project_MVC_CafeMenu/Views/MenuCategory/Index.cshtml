@@ -1,0 +1,32 @@
+
+@model List<Project_MVC_CafeMenu.Models.MenuCategory>
+
+@{
+    ViewData["Title"] = "Menü Kategorileri";
+}
+
+<h2 class="mb-4">Menü Kategorileri</h2>
+
+<div class="row">
+    @foreach (var category in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">@category.Name</h5>
+
+                    <p class="card-text">
+                        @category.Description
+                    </p>
+
+                    <a asp-controller="MenuItem"
+                       asp-action="Index"
+                       asp-route-categoryId="@category.Id"
+                       class="btn btn-primary">
+                        Ürünleri Gör
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

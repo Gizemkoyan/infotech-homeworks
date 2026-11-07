@@ -1,0 +1,43 @@
+@model Project_MVC_PlantShop.Models.Plant
+
+@{
+    ViewData["Title"]="Bitki Detayı";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <img src="@Model.ImageUrl"
+             class="card-img-top"
+             alt="@Model.Name"
+             style="max-height: 500px; object-fit: cover;">
+
+        <div class="card-body">
+            <h2 class="card-title">@Model.Name</h2>
+
+            <p class="card-text">
+                @Model.Description
+            </p>
+
+            <p>
+                <strong>Fiyat:</strong> @Model.Price ₺
+            </p>
+
+            <p>
+                <strong>Stok:</strong> @Model.StockQuantity
+            </p>
+
+            <a asp-controller="Plant"
+               asp-action="Edit"
+               asp-route-id="@Model.Id"
+               class="btn btn-warning">
+                Düzenle
+            </a>
+
+            <a asp-controller="Plant"
+               asp-action="Index"
+               class="btn btn-secondary">
+                Geri Dön
+            </a>
+        </div>
+    </div>
+</div>

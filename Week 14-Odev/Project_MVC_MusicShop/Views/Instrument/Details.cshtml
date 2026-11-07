@@ -1,0 +1,60 @@
+
+@model Project_MVC_MusicShop.Models.Instrument
+
+@{
+    ViewData["Title"] = "Enstrüman Detayı";
+}
+
+<h2 class="mb-4">Enstrüman Detayı</h2>
+
+<div class="card shadow-sm">
+    <div class="row g-0">
+        <div class="col-md-6">
+            <img src="@Model.ImageUrl"
+                 class="img-fluid rounded-start w-100"
+                 alt="@Model.Name">
+        </div>
+
+        <div class="col-md-6">
+            <div class="card-body">
+                <h3 class="card-title">@Model.Name</h3>
+
+                <p class="card-text">
+                    @Model.Description
+                </p>
+
+                <p>
+                    <strong>Marka:</strong> @Model.Brand
+                </p>
+
+                <p>
+                    <strong>Stok Miktarı:</strong> @Model.StockQuantity
+                </p>
+
+                <p class="text-success fs-4 fw-bold">
+                    @Model.Price.ToString("N2") TL
+                </p>
+
+                <a asp-controller="Instrument"
+                   asp-action="Edit"
+                   asp-route-id="@Model.Id"
+                   class="btn btn-warning">
+                    Düzenle
+                </a>
+
+                <a asp-controller="Instrument"
+                   asp-action="Delete"
+                   asp-route-id="@Model.Id"
+                   class="btn btn-danger">
+                    Sil
+                </a>
+
+                <a asp-controller="Instrument"
+                   asp-action="Index"
+                   class="btn btn-secondary">
+                    Listeye Dön
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

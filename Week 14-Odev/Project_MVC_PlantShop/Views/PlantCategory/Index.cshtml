@@ -1,0 +1,27 @@
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@model List<Project_MVC_PlantShop.Models.PlantCategory>
+
+@{
+    ViewData["Title"]= "Kategoriler";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Bitki Kategorileri</h1>
+
+    <div class="row">
+        @foreach (var category in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@category.Name</h5>
+
+                        <p class="card-text">
+                            @category.Description
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

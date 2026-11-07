@@ -1,0 +1,74 @@
+
+@model Project_MVC_CafeMenu.Models.MenuItem
+
+@{
+    ViewData["Title"] = "Ürün Detayları";
+}
+
+<h2 class="mb-4">Ürün Detayları</h2>
+
+<div class="card shadow-sm">
+    <div class="row g-0">
+
+        <div class="col-md-5">
+            <img src="@Model.ImageUrl"
+                 alt="@Model.Name"
+                 class="img-fluid rounded-start"
+                 style="width: 100%; height: 100%; object-fit: cover;" />
+        </div>
+
+        <div class="col-md-7">
+            <div class="card-body">
+
+                <h3 class="card-title">@Model.Name</h3>
+
+                <p class="card-text">
+                    @Model.Description
+                </p>
+
+                <p>
+                    <strong>Kategori:</strong>
+                    @Model.MenuCategory?.Name
+                </p>
+
+                <p>
+                    <strong>Hazırlanma Süresi:</strong>
+                    @Model.PreparationTimeMinutes dakika
+                </p>
+
+                <p>
+                    <strong>Durum:</strong>
+
+                    @if (Model.IsAvailable)
+                    {
+                        <span class="badge bg-success">Mevcut</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Mevcut Değil</span>
+                    }
+                </p>
+
+                <h4 class="text-primary">
+                    @Model.Price.ToString("N2") TL
+                </h4>
+
+                <div class="mt-4">
+                    <a asp-controller="MenuItem"
+                       asp-action="Edit"
+                       asp-route-id="@Model.Id"
+                       class="btn btn-warning">
+                        Düzenle
+                    </a>
+
+                    <a asp-controller="MenuItem"
+                       asp-action="Index"
+                       class="btn btn-secondary">
+                        Menüye Dön
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

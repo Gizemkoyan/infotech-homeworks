@@ -1,0 +1,110 @@
+
+@model Project_MVC_BikeShop.Models.Bike
+
+@{
+    ViewData["Title"] = "Bisiklet Düzenle";
+}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">Bisiklet Düzenle</h2>
+
+    <form asp-controller="Bike" asp-action="Edit" method="post">
+
+        <input type="hidden" asp-for="Id" />
+
+        <div asp-validation-summary="ModelOnly"
+             class="text-danger"></div>
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">
+                Bisiklet Adı
+            </label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">
+                Açıklama
+            </label>
+            <textarea asp-for="Description"
+                      class="form-control"
+                      rows="3"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Price" class="form-label">
+                Fiyat
+            </label>
+            <input asp-for="Price"
+                   type="number"
+                   step="0.01"
+                   min="0"
+                   class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="StockQuantity" class="form-label">
+                Stok Miktarı
+            </label>
+            <input asp-for="StockQuantity"
+                   type="number"
+                   min="0"
+                   class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="FrameSize" class="form-label">
+                Kadro Boyutu
+            </label>
+
+            <select asp-for="FrameSize" class="form-select">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ImageUrl" class="form-label">
+                Görsel Adresi
+            </label>
+            <input asp-for="ImageUrl"
+                   class="form-control" />
+
+            <img src="@Model.ImageUrl"
+                 alt="@Model.Name"
+                 class="img-fluid rounded mt-3"
+                 style="max-width: 250px;" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="BikeCategoryId" class="form-label">
+                Kategori
+            </label>
+
+            <select asp-for="BikeCategoryId" class="form-select">
+                @foreach (var category in ViewBag.Categories)
+                {
+                    <option value="@category.Id">
+                        @category.Name
+                    </option>
+                }
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            Değişiklikleri Kaydet
+        </button>
+
+        <a asp-controller="Bike"
+           asp-action="Details"
+           asp-route-id="@Model.Id"
+           class="btn btn-secondary">
+            İptal
+        </a>
+
+    </form>
+</div>

@@ -1,0 +1,41 @@
+@model List<Project_MVC_PlantShop.Models.Plant>
+
+@{
+    ViewData["Title"]="Bitkiler";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Bitkiler</h1>
+
+    <div class="row">
+        @foreach (var plant in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="@plant.ImageUrl"
+                         class="card-img-top"
+                         alt="@plant.Name">
+
+                    <div class="card-body">
+                        <h5 class="card-title">@plant.Name</h5>
+
+                        <p class="card-text">
+                            @plant.Description
+                        </p>
+
+                        <p class="fw-bold">
+                            @plant.Price ₺
+                        </p>
+
+                        <a asp-controller="Plant"
+                           asp-action="Details"
+                           asp-route-id="@plant.Id"
+                           class="btn btn-success">
+                            Detay
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

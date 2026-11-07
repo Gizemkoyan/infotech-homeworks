@@ -1,0 +1,31 @@
+@model List<Project_MVC_MusicShop.Models.InstrumentCategory>
+
+@{
+    ViewData["Title"] = "Enstrüman Kategorileri";
+}
+
+<h2 class="mb-4">Enstrüman Kategorileri</h2>
+
+<div class="row">
+    @foreach (var category in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">@category.Name</h5>
+
+                    <p class="card-text">
+                        @category.Description
+                    </p>
+
+                    <a asp-controller="Instrument"
+                       asp-action="Index"
+                       asp-route-categoryId="@category.Id"
+                       class="btn btn-primary">
+                        Detay
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

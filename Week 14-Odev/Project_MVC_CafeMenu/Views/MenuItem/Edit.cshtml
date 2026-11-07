@@ -1,0 +1,122 @@
+
+@model Project_MVC_CafeMenu.Models.MenuItem
+
+@{
+    ViewData["Title"] = "Ürün Düzenle";
+}
+
+<h2 class="mb-4">Ürün Düzenle</h2>
+
+<div class="row">
+    <div class="col-md-8">
+
+        <form asp-controller="MenuItem" asp-action="Edit" method="post">
+
+            <input type="hidden" asp-for="Id" />
+
+            <div asp-validation-summary="ModelOnly"
+                 class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Ürün Adı</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label">Açıklama</label>
+                <textarea asp-for="Description"
+                          class="form-control"
+                          rows="3"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Price" class="form-label">Fiyat</label>
+                <input asp-for="Price"
+                       type="number"
+                       step="0.01"
+                       class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="PreparationTimeMinutes"
+                       class="form-label">
+                    Hazırlanma Süresi (Dakika)
+                </label>
+
+                <input asp-for="PreparationTimeMinutes"
+                       type="number"
+                       min="0"
+                       class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="MenuCategoryId"
+                       class="form-label">
+                    Kategori
+                </label>
+
+                <select asp-for="MenuCategoryId"
+                        class="form-select">
+
+                    @foreach (var category in ViewBag.Categories)
+                    {
+                        <option value="@category.Id">
+                            @category.Name
+                        </option>
+                    }
+
+                </select>
+            </div>
+
+            <div class="form-check mb-3">
+                <input asp-for="IsAvailable"
+                       class="form-check-input" />
+
+                <label asp-for="IsAvailable"
+                       class="form-check-label">
+                    Ürün Mevcut
+                </label>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ImageUrl"
+                       class="form-label">
+                    Görsel URL
+                </label>
+
+                <input asp-for="ImageUrl"
+                       class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Görsel Önizleme</label>
+
+                <div>
+                    <img src="@Model.ImageUrl"
+                         alt="@Model.Name"
+                         class="img-thumbnail"
+                         style="max-width: 250px;" />
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Değişiklikleri Kaydet
+            </button>
+
+            <a asp-controller="MenuItem"
+               asp-action="Details"
+               asp-route-id="@Model.Id"
+               class="btn btn-secondary">
+                İptal
+            </a>
+
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,70 @@
+@model Project_MVC_PlantShop.Models.Plant
+
+@{
+    ViewData["Title"]="Bitki Düzenle";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Bitki Düzenle</h1>
+
+    <form asp-controller="Plant" asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Price" class="form-label"></label>
+            <input asp-for="Price" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="StockQuantity" class="form-label"></label>
+            <input asp-for="StockQuantity" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ImageUrl" class="form-label"></label>
+            <input asp-for="ImageUrl" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Kategori</label>
+
+            <select asp-for="PlantCategoryId" class="form-select">
+                @foreach (var category in ViewBag.Categories)
+                {
+                    <option value="@category.Id">
+                        @category.Name
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <p>Resim Önizleme:</p>
+
+            <img src="@Model.ImageUrl"
+                 alt="@Model.Name"
+                 style="max-width: 300px; border-radius: 8px;" />
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            Kaydet
+        </button>
+
+        <a asp-controller="Plant"
+           asp-action="Details"
+           asp-route-id="@Model.Id"
+           class="btn btn-secondary">
+            Vazgeç
+        </a>
+    </form>
+</div>

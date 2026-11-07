@@ -1,0 +1,73 @@
+
+@model Project_MVC_BikeShop.Models.Bike
+
+@{
+    ViewData["Title"] = "Bisiklet Detayları";
+}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">@Model.Name</h2>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <img src="@Model.ImageUrl"
+                 alt="@Model.Name"
+                 class="img-fluid rounded shadow-sm" />
+        </div>
+
+        <div class="col-md-6">
+
+            <h4>@Model.Name</h4>
+
+            <p>@Model.Description</p>
+
+            <p>
+                <strong>Fiyat:</strong>
+                @Model.Price.ToString("N2") TL
+            </p>
+
+            <p>
+                <strong>Kategori:</strong>
+                @Model.BikeCategory?.Name
+            </p>
+
+            <p>
+                <strong>Kadro Boyutu:</strong>
+                @Model.FrameSize
+            </p>
+
+            <p>
+                <strong>Stok Durumu:</strong>
+
+                @if (Model.StockQuantity > 0)
+                {
+                    <span class="text-success">
+                        @Model.StockQuantity adet mevcut
+                    </span>
+                }
+                else
+                {
+                    <span class="text-danger">
+                        Stokta Yok
+                    </span>
+                }
+            </p>
+
+            <a asp-controller="Bike"
+               asp-action="Edit"
+               asp-route-id="@Model.Id"
+               class="btn btn-warning">
+                Düzenle
+            </a>
+
+            <a asp-controller="Bike"
+               asp-action="Index"
+               class="btn btn-secondary">
+                Bisikletlere Dön
+            </a>
+
+        </div>
+    </div>
+</div>

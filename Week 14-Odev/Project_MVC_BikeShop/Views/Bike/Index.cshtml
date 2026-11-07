@@ -1,0 +1,80 @@
+
+@model List<Project_MVC_BikeShop.Models.Bike>
+
+@{
+    ViewData["Title"] = "Bisikletler";
+}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">Bisikletlerimiz</h2>
+
+    <div class="row">
+
+        @foreach (var bike in Model)
+        {
+            <div class="col-md-4 mb-4">
+
+                <div class="card h-100 shadow-sm">
+
+                    <img src="@bike.ImageUrl"
+                         class="card-img-top"
+                         alt="@bike.Name"
+                         style="height: 220px; object-fit: cover;" />
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">
+                            @bike.Name
+                        </h5>
+
+                        <p class="card-text">
+                            @bike.Description
+                        </p>
+
+                        <p>
+                            <strong>Fiyat:</strong>
+                            @bike.Price.ToString("N2") TL
+                        </p>
+
+                        <p>
+                            <strong>Kategori:</strong>
+                            @bike.BikeCategory?.Name
+                        </p>
+
+                        <p>
+                            <strong>Kadro Boyutu:</strong>
+                            @bike.FrameSize
+                        </p>
+
+                        <p>
+                            <strong>Stok:</strong>
+
+                            @if (bike.StockQuantity > 0)
+                            {
+                                <span class="text-success">
+                                    @bike.StockQuantity adet
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="text-danger">
+                                    Stokta Yok
+                                </span>
+                            }
+                        </p>
+
+                        <a asp-controller="Bike"
+                           asp-action="Details"
+                           asp-route-id="@bike.Id"
+                           class="btn btn-primary">
+                            Detayları Gör
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

@@ -1,0 +1,16 @@
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: week13_library_postgres
+    environment:
+      POSTGRES_DB: week13_library_db
+      POSTGRES_USER: library_user
+      POSTGRES_PASSWORD: library123
+    ports:
+      - "5434:5432"
+    volumes:
+      - library_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  library_postgres_data:

@@ -1,0 +1,18 @@
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: week13_otel_postgres
+    environment:
+      POSTGRES_DB: week13_otel_db
+      POSTGRES_USER: otel_user
+      POSTGRES_PASSWORD: otel123
+    ports:
+      - "5433:5432"
+    volumes:
+      - otel_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  otel_postgres_data:
+    external: true
+    name: week13_otel_postgres_data

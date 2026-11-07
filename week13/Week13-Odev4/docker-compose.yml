@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: week13_movie_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: week13_movie_db
+      POSTGRES_USER: movie_user
+      POSTGRES_PASSWORD: movie123
+    ports:
+      - "5436:5432"
+    volumes:
+      - movie_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  movie_postgres_data:
